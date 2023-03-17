@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 set -e # -e: exit on error
 
@@ -10,13 +10,13 @@ if [[ "$OSTYPE" = "darwin"* ]]; then
 fi
 
 # Ensure neovim is installed. brew works on both Codespaces and mac
-[[ ! command -v nvim ]] && brew install neovim
+[[ ! $(command -v nvim) ]] && brew install neovim
 
 # Install and apply chezmoi regardless
 sh -c "$(curl -fsLS get.chezmoi.io)" -- init --apply $GITHUB_USERNAME
 
 # Install ripgrep, lazygit, shellcheck on codespaces
-[[ ! -z "$CODESPACES" ]] && apt install -y ripgrep lazygit
+[[ -n "$CODESPACES" ]] && apt install -y ripgrep lazygit
 
 # Change shell to zsh
 if ! grep -q "root.*/bin/zsh" /etc/passwd; then

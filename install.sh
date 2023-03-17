@@ -1,6 +1,10 @@
 #!/bin/bash
 
 set -e # -e: exit on error
+set -x # -x: print commands
+
+# Make passwordless sudo work
+export SUDO_ASKPASS=/bin/true
 
 GITHUB_USERNAME="pdotl"
 
@@ -22,5 +26,5 @@ fi
 
 # Change shell to zsh
 if [[ "$SHELL" != "/usr/bin/zsh" ]]; then
-	chsh -s "$(which zsh)"
+	sudo chsh -s "$(which zsh)"
 fi

@@ -16,7 +16,9 @@ fi
 sh -c "$(curl -fsLS get.chezmoi.io)" -- init --apply $GITHUB_USERNAME
 
 # Install ripgrep, lazygit, shellcheck on codespaces
-[[ -n "$CODESPACES" ]] && sudo apt-get install -y ripgrep lazygit
+if [[ -n "$CODESPACES" ]]; then
+	sudo apt update 2>&1 && sudo apt-get install --no-install-recommends -y ripgrep lazygit >&1
+fi
 
 # Change shell to zsh
 if [[ "$SHELL" != "/usr/bin/zsh" ]]; then

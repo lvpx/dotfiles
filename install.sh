@@ -9,8 +9,8 @@ if [[ "$OSTYPE" = "darwin"* ]]; then
 	/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 fi
 
-# Ensure neovim is installed. brew works on both Codespaces and mac
-[[ ! $(command -v nvim) ]] && brew install neovim
+# Ensure neovim is installed.
+# TODO
 
 # Install and apply chezmoi regardless
 sh -c "$(curl -fsLS get.chezmoi.io)" -- init --apply $GITHUB_USERNAME
@@ -19,6 +19,6 @@ sh -c "$(curl -fsLS get.chezmoi.io)" -- init --apply $GITHUB_USERNAME
 [[ -n "$CODESPACES" ]] && apt install -y ripgrep lazygit
 
 # Change shell to zsh
-if ! grep -q "root.*/bin/zsh" /etc/passwd; then
-	chsh -s /bin/zsh root
+if [[ "$SHELL" != "/usr/local/bin/zsh" ]]; then
+	chsh -s "$(which zsh)"
 fi

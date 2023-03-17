@@ -15,3 +15,7 @@ sh -c "$(curl -fsLS get.chezmoi.io)" -- init --apply $GITHUB_USERNAME
 
 # Take action based on codespace or not
 # Install ripgrep, lazygit
+
+# Ensure zsh is used
+chsh -s /bin/zsh
+source ~/.zshrc

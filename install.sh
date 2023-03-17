@@ -3,6 +3,10 @@
 set -e # -e: exit on error
 set -x # -x: print commands
 
+if [ -z "$USER" ]; then
+	USER=$(id -un)
+fi
+cd "$HOME"
 # Make passwordless sudo work
 export SUDO_ASKPASS=/bin/true
 
@@ -23,7 +27,7 @@ fi
 
 # Change shell to zsh
 if [[ "$SHELL" != "/usr/bin/zsh" ]]; then
-	sudo chsh -s "$(which zsh)"
+	sudo chsh -s "$(which zsh)" "$USER"
 fi
 
 # Install and apply chezmoi regardless

@@ -23,21 +23,16 @@ export SUDO_ASKPASS=/bin/true
 
 GITHUB_USERNAME="pdotl"
 
-# Install Homebrew if mac
-if [[ "$OSTYPE" = "darwin"* ]]; then
-	/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-fi
-
 # Ensure neovim is installed.
 if ! command -v nvim; then
 	install_neovim
 fi
 
 # Install packages
-if [[ -n "$CODESPACES" ]]; then
-	sudo apt update 1>/dev/null &
-	sudo apt-get install --no-install-recommends -y ripgrep >&1 1>/dev/null
-fi
+# if [[ -n "$CODESPACES" ]]; then
+# 	sudo apt update 1>/dev/null &
+# 	sudo apt-get install --no-install-recommends -y ripgrep >&1 1>/dev/null
+# fi
 
 # Change shell to zsh
 if [[ "$SHELL" != "/bin/zsh" ]]; then

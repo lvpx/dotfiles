@@ -15,15 +15,12 @@ export PATH=~/.local/bin:~/bin:$PATH
 source ~/antigen.zsh
 antigen use oh-my-zsh
 antigen bundle git
-antigen bundle mercurial
 antigen bundle command-not-found
 antigen bundle zsh-users/zsh-completions
 antigen bundle zsh-users/zsh-syntax-highlighting
-antigen theme wezm
 antigen apply
 
 [ -f ~/.alias ] && source ~/.alias
 [ -f ~/.alias_spec ] && source ~/.alias_spec
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 unsetopt BEEP

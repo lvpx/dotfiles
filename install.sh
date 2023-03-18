@@ -2,9 +2,20 @@
 
 set -e # -e: exit on error
 
+function install_neovim() {
+	if command -v nvim; then return 1; fi
+	curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim.appimage
+	chmod u+x nvim.appimage
+	./nvim.appimage --appimage-extract
+	./squashfs-root/AppRun --version
+	sudo mv squashfs-root /
+	sudo ln -s /squashfs-root/AppRun /usr/bin/nvim
+}
+
 if [ -z "$USER" ]; then
 	USER=$(id -un)
 fi
+
 cd "$HOME"
 
 # Make passwordless sudo work
@@ -18,17 +29,19 @@ if [[ "$OSTYPE" = "darwin"* ]]; then
 fi
 
 # Ensure neovim is installed.
-# TODO
+if ! command -v nvim; then
+	install_neovim
+fi
 
-# Install ripgrep, lazygit, shellcheck on codespaces
+# Install packages
 if [[ -n "$CODESPACES" ]]; then
 	sudo apt update 1>/dev/null &
 	sudo apt-get install --no-install-recommends -y ripgrep >&1 1>/dev/null
 fi
 
 # Change shell to zsh
-if [[ "$SHELL" != "/usr/bin/zsh" ]]; then
-	sudo chsh -s "/usr/bin/zsh" "$USER"
+if [[ "$SHELL" != "/bin/zsh" ]]; then
+	sudo chsh -s "/bin/zsh" "$USER"
 fi
 
 # Install and apply chezmoi regardless

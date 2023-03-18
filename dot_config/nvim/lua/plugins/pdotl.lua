@@ -27,4 +27,18 @@ return {
       },
     },
   },
+  {
+    "neovim/nvim-lspconfig",
+    opts = {
+      servers = {
+        solargraph = {
+          cmd = { "solargraph", "stdio" },
+          filetypes = { "ruby" },
+          root_dir = function()
+            return vim.loop.cwd()
+          end,
+        },
+      },
+    },
+  },
 }

@@ -34,6 +34,8 @@ fi
 # 	sudo apt-get install --no-install-recommends -y ripgrep >&1 1>/dev/null
 # fi
 
+# Install asdf and ruby
+
 # Change shell to zsh
 if [[ "$SHELL" != "/bin/zsh" ]]; then
 	sudo chsh -s "/bin/zsh" "$USER"

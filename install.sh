@@ -37,9 +37,9 @@ fi
 # Install asdf and ruby
 
 # Change shell to zsh
-if [[ "$SHELL" != "/bin/zsh" ]]; then
-	sudo chsh -s "/bin/zsh" "$USER"
-fi
+# if [[ "$SHELL" != "/bin/zsh" ]]; then
+# 	sudo chsh -s "/bin/zsh" "$USER"
+# fi
 
 # Install and apply chezmoi regardless
 sh -c "$(curl -fsLS get.chezmoi.io)" -- init --apply $GITHUB_USERNAME

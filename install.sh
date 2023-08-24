@@ -19,14 +19,14 @@ fi
 cd "$HOME"
 
 # Make passwordless sudo work
-export SUDO_ASKPASS=/bin/true
+#export SUDO_ASKPASS=/bin/true
 
 GITHUB_USERNAME="pdotl"
 
 # Ensure neovim is installed.
-if ! command -v nvim; then
-	install_neovim
-fi
+#if ! command -v nvim; then
+#	install_neovim
+#fi
 
 # Install packages
 # if [[ -n "$CODESPACES" ]]; then
